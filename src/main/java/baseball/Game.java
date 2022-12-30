@@ -31,6 +31,7 @@ public class Game {
         return judgment;
     }
 
+
     static class Judgment {
         private final String answer;
         private int strike;
@@ -40,6 +41,14 @@ public class Game {
             this.answer = answer;
             this.strike = 0;
             this.ball = 0;
+        }
+
+        public int getStrike() {
+            return strike;
+        }
+
+        public int getBall() {
+            return ball;
         }
 
         public void pitch(int index, char num){
