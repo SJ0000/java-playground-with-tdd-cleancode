@@ -1,12 +1,24 @@
 package baseball;
 
-import java.util.Random;
-
 public class Game {
+
+    private View view = new View();
 
     public void start() {
         String number = generateNumber();
-        System.out.println(number);
+        System.out.println("generated number = " + number);
+
+        while(true){
+            String input = view.inputNumber();
+            Judgment judgment = judge(input, number);
+            view.printResult(judgment);
+            if(judgment.isCompleted()){
+                view.printComplete();
+                int continueOrExit = view.askContinueOrExit();
+                if(continueOrExit == 2)
+                    break;
+            }
+        }
     }
 
     private String generateNumber() {
@@ -29,66 +41,5 @@ public class Game {
         }
 
         return judgment;
-    }
-
-
-    static class Judgment {
-        private final String answer;
-        private int strike;
-        private int ball;
-
-        public Judgment(String answer) {
-            this.answer = answer;
-            this.strike = 0;
-            this.ball = 0;
-        }
-
-        public int getStrike() {
-            return strike;
-        }
-
-        public int getBall() {
-            return ball;
-        }
-
-        public void pitch(int index, char num){
-            if(isStrike(index,num)){
-                strike++;
-                return;
-            }
-
-            if(answer.contains(num + "")){
-                ball++;
-                return;
-            }
-        }
-
-        private boolean isStrike(int index, char num) {
-            return answer.charAt(index) == num;
-        }
-
-        private boolean isBall(char num){
-            return answer.contains(num + "");
-        }
-
-
-        @Override
-        public String toString() {
-            StringBuilder sb = new StringBuilder();
-
-            if (ball > 0) {
-                sb.append(ball).append("볼 ");
-            }
-
-            if (strike > 0) {
-                sb.append(strike).append("스트라이크");
-            }
-
-            if (ball == 0 && strike == 0) {
-                sb.append("낫싱");
-            }
-
-            return sb.toString();
-        }
     }
 }
