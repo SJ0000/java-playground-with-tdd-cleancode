@@ -11,10 +11,6 @@ public class View {
         return sc.nextLine();
     }
 
-    public void printResult(Judgment judgment){
-        System.out.println(judgment.toString());
-    }
-
     public void printComplete(){
         System.out.println("3개의 숫자를 모두 맞히셨습니다! 게임 종료");
     }
