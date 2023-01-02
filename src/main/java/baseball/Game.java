@@ -4,6 +4,11 @@ public class Game {
 
     private View view = new View();
 
+    public static void main(String[] args) {
+        Game game = new Game();
+        game.start();
+    }
+
     public void start() {
         String number = generateNumber();
         System.out.println("generated number = " + number);
@@ -39,7 +44,6 @@ public class Game {
         for(int i=0;i<3;i++){
             judgment.pitch(i, input.charAt(i));
         }
-
         return judgment;
     }
 }
