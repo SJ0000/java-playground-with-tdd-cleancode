@@ -1,5 +1,9 @@
 package baseball;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
+
 public class Game {
 
     private View view = new View();
@@ -10,15 +14,33 @@ public class Game {
     }
 
     public void start() {
-        String number = generateNumber();
-        System.out.println("generated number = " + number);
+        List<Integer> generated = generateNumbers();
+        System.out.println("generated number = " + generated);
+        Balls computer = new Balls(generated);
+
+        while(true){
+            Balls user = new Balls(inputToNumbers(view.inputNumber()));
+            PlayResult result = computer.play(user);
+            view.printResult(result);
+            if(result.isCompleted())
+                break;
+        }
+
+        if(view.askContinue())
+            start();
     }
 
-    private String generateNumber() {
-        StringBuilder sb = new StringBuilder();
+    private List<Integer> generateNumbers() {
+        List<Integer> numbers = new ArrayList<>();
         for (int i = 0; i < 3; i++) {
-            sb.append(RandomUtils.createRandomInt(1, 9));
+            numbers.add(RandomUtils.createRandomInt(1, 9));
         }
-        return sb.toString();
+        return numbers;
+    }
+
+    private List<Integer> inputToNumbers(String input){
+        return input.chars()
+                .mapToObj(ch -> ch - '0')
+                .collect(Collectors.toList());
     }
 }

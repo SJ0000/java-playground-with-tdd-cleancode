@@ -8,4 +8,17 @@ public class PlayResult {
         this.ball = ball;
         this.strike = strike;
     }
+
+    public boolean isCompleted(){
+        return this.strike == 3;
+    }
+
+
+    @Override
+    public String toString() {
+        return "PlayResult{" +
+                "ball=" + ball +
+                ", strike=" + strike +
+                '}';
+    }
 }
