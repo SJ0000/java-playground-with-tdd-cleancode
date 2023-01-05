@@ -30,10 +30,11 @@ public class CarTest {
     @DisplayName("입력된 문자열을 쉼표로 구분하여 각 자동차를 생성한다")
     void createCars(){
         String input = "alpha,beta,gamma";
-        List<Car> cars = CarFactory.createCars("alpha,beta,gamma");
+        Cars cars = CarFactory.createCars("alpha,beta,gamma");
         String[] names = input.split(",");
+
         for (String name : names) {
-            assertThat(cars).anyMatch((car)-> car.getName().equals(name));
+            assertThat(cars.containsByName(name)).isTrue();
         }
     }
 

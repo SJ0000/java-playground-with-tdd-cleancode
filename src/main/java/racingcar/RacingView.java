@@ -3,7 +3,7 @@ package racingcar;
 import java.util.List;
 import java.util.Scanner;
 
-public class View {
+public class RacingView {
 
     Scanner sc = new Scanner(System.in);
 
@@ -17,11 +17,15 @@ public class View {
         return sc.nextInt();
     }
 
-    public void printResult(List<CarDto> cars){
+    public void printResult(){
         System.out.println("실행 결과");
+    }
+
+    public void printCars(List<CarDto> cars){
         for (CarDto car : cars) {
             System.out.println(car);
         }
+        System.out.println();
     }
 
     public void printWinners(List<CarDto> winners){
@@ -30,7 +34,7 @@ public class View {
         for(int i=1;i<winners.size();i++){
             sb.append(", ").append(winners.get(i).getName());
         }
-        sb.append("가 최종우승했습니다.");
+        sb.append("가 최종 우승했습니다.");
         System.out.println(sb);
     }
 }
