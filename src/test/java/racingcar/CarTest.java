@@ -5,6 +5,8 @@ import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.util.List;
+
 import static org.assertj.core.api.Assertions.*;
 
 public class CarTest {
@@ -22,5 +24,25 @@ public class CarTest {
     void nameLengthError(){
         assertThatThrownBy(()->Car.create("123456"))
                 .isInstanceOf(RuntimeException.class);
+    }
+
+    @Test
+    @DisplayName("입력된 문자열을 쉼표로 구분하여 각 자동차를 생성한다")
+    void createCars(){
+        String input = "alpha,beta,gamma";
+        List<Car> cars = CarFactory.createCars("alpha,beta,gamma");
+        String[] names = input.split(",");
+        for (String name : names) {
+            assertThat(cars).anyMatch((car)-> car.getName().equals(name));
+        }
+    }
+
+    @Test
+    @DisplayName("자동차는 4 이상의 값을 받은 경우 전진한다")
+    void move(){
+        Car car = Car.create("a");
+        int prevMoveCount = car.getMoveCount();
+        car.move(4);
+        assertThat(car.getMoveCount()).isEqualTo(prevMoveCount+1);
     }
 }
