@@ -1,4 +1,4 @@
-package racingcar;
+package racingcar.domain;
 
 public class Car {
 
@@ -10,8 +10,6 @@ public class Car {
         this.moveCount = 0;
     }
 
-
-
     public static Car create(String name){
         if(name.length() > 5){
             throw new RuntimeException("Car name length must less than 6");
@@ -19,10 +17,9 @@ public class Car {
         return new Car(name);
     }
 
-    public void move(int value){
-        if(value >= 4){
+    public void move(MovingStrategy movingStrategy){
+        if(movingStrategy.movable())
             moveCount++;
-        }
     }
 
     public String getName() {

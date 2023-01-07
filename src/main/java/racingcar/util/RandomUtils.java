@@ -1,4 +1,4 @@
-package racingcar;
+package racingcar.util;
 
 public class RandomUtils {
     public static int createRandomInt(int min, int max) {

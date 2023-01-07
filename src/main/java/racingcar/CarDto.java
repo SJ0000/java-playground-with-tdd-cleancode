@@ -1,5 +1,7 @@
 package racingcar;
 
+import racingcar.domain.Car;
+
 public class CarDto {
     private final String name;
     private final int moveCount;

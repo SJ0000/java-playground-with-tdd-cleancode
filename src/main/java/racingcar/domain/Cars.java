@@ -1,4 +1,7 @@
-package racingcar;
+package racingcar.domain;
+
+import racingcar.CarDto;
+import racingcar.util.RandomUtils;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -26,10 +29,9 @@ public class Cars {
                 .orElse(0);
     }
 
-    public void move() {
+    public void move(MovingStrategy movingStrategy) {
         for (Car car : cars) {
-            int value = RandomUtils.createRandomInt(0, 9);
-            car.move(value);
+            car.move(movingStrategy);
         }
     }
 

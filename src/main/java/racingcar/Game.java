@@ -1,7 +1,11 @@
 package racingcar;
 
-import java.util.List;
-import java.util.stream.Collectors;
+import racingcar.domain.CarFactory;
+import racingcar.domain.Cars;
+import racingcar.domain.MovingStrategy;
+import racingcar.domain.RandomMovingStrategy;
+
+import java.util.Random;
 
 public class Game {
 
@@ -12,8 +16,11 @@ public class Game {
         int tryCount = view.askTryCount();
 
         view.printResult();
+
+        MovingStrategy randomMovingStrategy = new RandomMovingStrategy();
+
         for(int i=0;i<tryCount;i++){
-            cars.move();
+            cars.move(randomMovingStrategy);
             view.printCars(cars.toDto());
         }
 

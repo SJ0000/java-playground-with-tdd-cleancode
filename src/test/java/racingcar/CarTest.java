@@ -1,11 +1,10 @@
 package racingcar;
 
-import com.sun.source.tree.AssertTree;
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-
-import java.util.List;
+import racingcar.domain.Car;
+import racingcar.domain.CarFactory;
+import racingcar.domain.Cars;
 
 import static org.assertj.core.api.Assertions.*;
 
@@ -39,11 +38,20 @@ public class CarTest {
     }
 
     @Test
-    @DisplayName("자동차는 4 이상의 값을 받은 경우 전진한다")
+    @DisplayName("자동차 전진")
     void move(){
         Car car = Car.create("a");
         int prevMoveCount = car.getMoveCount();
-        car.move(4);
+        car.move(()-> true);
         assertThat(car.getMoveCount()).isEqualTo(prevMoveCount+1);
+    }
+
+    @Test
+    @DisplayName("자동차 전진 안함")
+    void cannot_move(){
+        Car car = Car.create("a");
+        int prevMoveCount = car.getMoveCount();
+        car.move(()-> false);
+        assertThat(car.getMoveCount()).isEqualTo(prevMoveCount);
     }
 }
