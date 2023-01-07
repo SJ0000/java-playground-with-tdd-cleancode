@@ -2,31 +2,24 @@ package racingcar.domain;
 
 public class Car {
 
-    private final String name;
-    private int moveCount;
+    private final Name name;
+    private final Position position;
 
-    private Car(String name) {
-        this.name = name;
-        this.moveCount = 0;
-    }
-
-    public static Car create(String name){
-        if(name.length() > 5){
-            throw new RuntimeException("Car name length must less than 6");
-        }
-        return new Car(name);
+    public Car(String name) {
+        this.name = new Name(name);
+        this.position = new Position();
     }
 
     public void move(MovingStrategy movingStrategy){
         if(movingStrategy.movable())
-            moveCount++;
+            position.move();
     }
 
     public String getName() {
-        return name;
+        return name.getName();
     }
 
-    public int getMoveCount() {
-        return moveCount;
+    public int getPosition() {
+        return position.getPosition();
     }
 }

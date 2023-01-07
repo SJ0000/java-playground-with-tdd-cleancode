@@ -8,7 +8,7 @@ public class CarDto {
 
     public CarDto(Car car) {
         this.name = car.getName();
-        this.moveCount = car.getMoveCount();
+        this.moveCount = car.getPosition();
     }
 
     private String moveBar(){

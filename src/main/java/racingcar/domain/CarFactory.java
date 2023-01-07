@@ -7,7 +7,7 @@ import java.util.stream.Collectors;
 public class CarFactory {
     public static Cars createCars(String s) {
         List<Car> list = Arrays.stream(s.split(","))
-                .map(Car::create)
+                .map(Car::new)
                 .collect(Collectors.toList());
         return new Cars(list);
     }

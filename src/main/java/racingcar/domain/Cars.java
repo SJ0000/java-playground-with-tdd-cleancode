@@ -1,7 +1,6 @@
 package racingcar.domain;
 
 import racingcar.CarDto;
-import racingcar.util.RandomUtils;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -17,14 +16,14 @@ public class Cars {
     public Cars getWinners() {
         int maxMoveCount = getMaxMoveCount();
         List<Car> list = cars.stream()
-                .filter(car -> car.getMoveCount() == maxMoveCount)
+                .filter(car -> car.getPosition() == maxMoveCount)
                 .collect(Collectors.toList());
         return new Cars(list);
     }
 
     private int getMaxMoveCount() {
         return cars.stream()
-                .mapToInt(Car::getMoveCount)
+                .mapToInt(Car::getPosition)
                 .max()
                 .orElse(0);
     }
