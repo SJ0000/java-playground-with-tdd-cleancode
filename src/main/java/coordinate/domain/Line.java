@@ -1,4 +1,4 @@
-package coordinate;
+package coordinate.domain;
 
 public class Line {
     private Point p1;

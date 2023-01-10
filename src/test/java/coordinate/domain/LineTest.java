@@ -1,6 +1,7 @@
-package coordinate;
+package coordinate.domain;
 
-import org.assertj.core.api.Assertions;
+import coordinate.domain.Line;
+import coordinate.domain.Point;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

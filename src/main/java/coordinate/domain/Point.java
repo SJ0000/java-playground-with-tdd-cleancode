@@ -1,9 +1,11 @@
-package coordinate;
+package coordinate.domain;
+
+import java.util.Objects;
 
 public class Point {
 
-    private static final int POINT_MIN = 0;
-    private static final int POINT_MAX = 24;
+    public static final int LIMIT_MIN = 1;
+    public static final int LIMIT_MAX = 24;
 
     int x;
     int y;
@@ -22,7 +24,7 @@ public class Point {
     }
 
     private boolean isInRange(int value){
-        return POINT_MIN <= value && value <= POINT_MAX;
+        return LIMIT_MIN <= value && value <= LIMIT_MAX;
     }
 
     public int getX() {
@@ -31,5 +33,18 @@ public class Point {
 
     public int getY() {
         return y;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Point point = (Point) o;
+        return getX() == point.getX() && getY() == point.getY();
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getX(), getY());
     }
 }
