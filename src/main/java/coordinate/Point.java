@@ -24,4 +24,12 @@ public class Point {
     private boolean isInRange(int value){
         return POINT_MIN <= value && value <= POINT_MAX;
     }
+
+    public int getX() {
+        return x;
+    }
+
+    public int getY() {
+        return y;
+    }
 }
