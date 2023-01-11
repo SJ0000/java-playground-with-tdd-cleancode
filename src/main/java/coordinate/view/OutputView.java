@@ -3,7 +3,7 @@ package coordinate.view;
 import coordinate.domain.Point;
 import coordinate.domain.Points;
 
-public class CoordinateView {
+public class OutputView {
 
     public static void printMap(Points points) {
         printVerticalWithPoints(points);
@@ -59,11 +59,5 @@ public class CoordinateView {
             return;
         }
         System.out.print("    |");
-    }
-
-    public static void main(String[] args) {
-        Point a = new Point(10,10);
-        Point b = new Point(14,15);
-        CoordinateView.printMap(new Points(a,b));
     }
 }
