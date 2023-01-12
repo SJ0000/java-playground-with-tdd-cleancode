@@ -8,6 +8,9 @@ public class ShapeFactory {
         if(points.size() == 2)
             return new Line(points);
 
+        if(points.size() == 3)
+            return new Triangle(points);
+
         if(points.size() == 4)
             return new Rectangle(points);
 
