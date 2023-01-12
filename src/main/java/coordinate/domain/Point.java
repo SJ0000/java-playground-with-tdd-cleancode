@@ -42,6 +42,15 @@ public class Point {
         return y;
     }
 
+    public boolean isVertical(Point p){
+        return getX() == p.getX() && getY() != p.getY();
+    }
+
+    public boolean isHorizontal(Point p){
+        return getX() != p.getX() && getY() == p.getY();
+    }
+
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

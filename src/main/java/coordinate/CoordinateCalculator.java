@@ -1,6 +1,8 @@
 package coordinate;
 
 import coordinate.domain.Point;
+import coordinate.domain.Shape;
+import coordinate.domain.ShapeFactory;
 import coordinate.view.InputView;
 import coordinate.view.OutputView;
 
@@ -10,6 +12,7 @@ public class CoordinateCalculator {
 
     public static void main(String[] args) {
         List<Point> points = InputView.requestPoints();
-        OutputView.printMap(points);
+        Shape shape = ShapeFactory.create(points);
+        OutputView.printMap(shape);
     }
 }

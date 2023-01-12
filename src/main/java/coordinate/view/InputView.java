@@ -14,7 +14,6 @@ public class InputView {
     private static final String INPUT_REQUEST = "죄표를 입력하세요.";
     private static final String INVALID_INPUT = "잘못된 입력입니다.";
 
-
     public static List<Point> requestPoints(){
         System.out.println(INPUT_REQUEST);
         return parseInput(sc.nextLine());
