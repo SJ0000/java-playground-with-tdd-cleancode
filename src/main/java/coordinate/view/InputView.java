@@ -1,10 +1,8 @@
 package coordinate.view;
 
 import coordinate.domain.Point;
-import coordinate.domain.Points;
 
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
 import java.util.stream.Collectors;
@@ -17,19 +15,17 @@ public class InputView {
     private static final String INVALID_INPUT = "잘못된 입력입니다.";
 
 
-    public static Points requestPoints(){
+    public static List<Point> requestPoints(){
         System.out.println(INPUT_REQUEST);
         return parseInput(sc.nextLine());
     }
 
-    private static Points parseInput(String input){
+    private static List<Point> parseInput(String input){
         String[] positions = input.split("-");
 
-        List<Point> list = Arrays.stream(positions)
+        return Arrays.stream(positions)
                 .map(InputView::toPoint)
                 .collect(Collectors.toList());
-
-        return new Points(list.toArray(new Point[0]));
     }
 
     private static Point toPoint(String str){

@@ -1,13 +1,15 @@
 package coordinate;
 
-import coordinate.domain.Points;
+import coordinate.domain.Point;
 import coordinate.view.InputView;
 import coordinate.view.OutputView;
+
+import java.util.List;
 
 public class CoordinateCalculator {
 
     public static void main(String[] args) {
-        Points points = InputView.requestPoints();
+        List<Point> points = InputView.requestPoints();
         OutputView.printMap(points);
     }
 }

@@ -1,17 +1,21 @@
 package coordinate.domain;
 
-public class Line {
-    private Point p1;
-    private Point p2;
+import java.util.List;
 
-    public Line(Point p1, Point p2) {
-        this.p1 = p1;
-        this.p2 = p2;
+public class Line extends AbstractShape {
+
+    public Line(List<Point> points) {
+        super(points);
     }
 
-    public double getLength() {
-        double xDiff = Math.abs(p1.getX() - p2.getX());
-        double yDiff = Math.abs(p1.getY() - p2.getY());
-        return Math.sqrt((xDiff*xDiff) + (yDiff*yDiff));
+    public double getDistance(){
+        Point p1 = points.get(0);
+        Point p2 = points.get(1);
+        return p1.distance(p2);
+    }
+
+    @Override
+    public String getReport(){
+        return "두 점 사이 거리는 " + getDistance();
     }
 }

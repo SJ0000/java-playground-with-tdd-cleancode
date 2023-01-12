@@ -27,6 +27,13 @@ public class Point {
         return LIMIT_MIN <= value && value <= LIMIT_MAX;
     }
 
+
+    public double distance(Point p){
+        double xDiff = Math.abs(getX() - p.getX());
+        double yDiff = Math.abs(getY() - p.getY());
+        return Math.sqrt((xDiff*xDiff) + (yDiff*yDiff));
+    }
+
     public int getX() {
         return x;
     }

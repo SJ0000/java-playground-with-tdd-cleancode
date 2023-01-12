@@ -1,13 +1,16 @@
 package coordinate.view;
 
 import coordinate.domain.Point;
-import coordinate.domain.Points;
+import coordinate.domain.Shape;
+
+import java.util.List;
 
 public class OutputView {
 
-    public static void printMap(Points points) {
-        printVerticalWithPoints(points);
+    public static void printMap(Shape shape) {
+        printVerticalWithPoints(shape.getPoints());
         printHorizontal();
+        System.out.println(shape.getReport());
     }
 
     private static void printHorizontal() {
@@ -35,7 +38,7 @@ public class OutputView {
         System.out.println();
     }
 
-    private static void printVerticalWithPoints(Points points) {
+    private static void printVerticalWithPoints(List<Point> points) {
         for (int y = Point.LIMIT_MAX; y >= Point.LIMIT_MIN; y--) {
             printYAxis(y);
             printArea(points, y);
@@ -43,9 +46,9 @@ public class OutputView {
         }
     }
 
-    private static void printArea(Points points, int y) {
+    private static void printArea(List<Point> points, int y) {
         for(int x=Point.LIMIT_MIN;x<=Point.LIMIT_MAX;x++){
-            if(points.contains(x, y)){
+            if(points.contains(new Point(x,y))){
                 System.out.print("*   ");
                 continue;
             }
