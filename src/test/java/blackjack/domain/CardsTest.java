@@ -33,4 +33,14 @@ class CardsTest {
         cards.add(new Card(Suit.CLOVER, Denomination.ACE));
         assertThat(cards.calculatePoint()).isEqualTo(12);
     }
+
+    @Test
+    @DisplayName("카드의 합이 21, 블랙잭")
+    void blackjack(){
+        Cards cards = new Cards();
+        cards.add(new Card(Suit.CLOVER, Denomination.THREE));
+        cards.add(new Card(Suit.CLOVER, Denomination.SEVEN));
+        cards.add(new Card(Suit.CLOVER, Denomination.ACE));
+        assertThat(cards.isBlackJack()).isTrue();
+    }
 }

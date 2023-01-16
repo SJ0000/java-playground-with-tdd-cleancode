@@ -22,4 +22,9 @@ public class Card {
     public boolean isAce(){
         return denomination == Denomination.ACE;
     }
+
+    @Override
+    public String toString() {
+        return denomination.getName()+suit.getName();
+    }
 }

@@ -7,7 +7,9 @@ import java.util.List;
 
 public class Cards {
 
-    private List<Card> cards;
+    private static final int BLACKJACK_POINT = 21;
+
+    private final List<Card> cards;
 
     public Cards() {
         this.cards = new ArrayList<>();
@@ -23,6 +25,10 @@ public class Cards {
         return calculateBestPoint(point,aceCount);
     }
 
+    public boolean isBlackJack(){
+        return calculatePoint() == BLACKJACK_POINT;
+    }
+
     private int getTotalPoint() {
         return cards.stream()
                 .mapToInt(Card::getValue)
@@ -36,12 +42,10 @@ public class Cards {
     }
 
     private int calculateBestPoint(int current, int aceCount) {
-        System.out.println("current = " + current);
         int point = current;
         for (int i = 0; i < aceCount; i++) {
             point = add10IfLOE21(point);
         }
-        System.out.println("best = " + point);
         return point;
     }
 
@@ -49,5 +53,14 @@ public class Cards {
         if (point + 10 <= 21)
             return point + 10;
         return point;
+    }
+
+    public int size(){
+        return cards.size();
+    }
+
+    @Override
+    public String toString() {
+        return cards.toString();
     }
 }
