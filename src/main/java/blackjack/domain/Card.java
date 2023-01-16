@@ -4,9 +4,22 @@ package blackjack.domain;
 import blackjack.domain.enums.Denomination;
 import blackjack.domain.enums.Suit;
 
+import java.util.Comparator;
+
 public class Card {
-    private Suit suit;
-    private Denomination denomination;
+    private final Suit suit;
+    private final Denomination denomination;
 
+    public Card(Suit suit, Denomination denomination) {
+        this.suit = suit;
+        this.denomination = denomination;
+    }
 
+    public int getValue(){
+        return denomination.getValue();
+    }
+
+    public boolean isAce(){
+        return denomination == Denomination.ACE;
+    }
 }
