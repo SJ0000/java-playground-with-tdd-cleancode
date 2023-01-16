@@ -4,6 +4,7 @@ import blackjack.domain.Dealer;
 import blackjack.domain.Deck;
 import blackjack.domain.Player;
 import blackjack.domain.enums.Action;
+import blackjack.dto.Report;
 import blackjack.view.InputView;
 import blackjack.view.OutputView;
 
@@ -27,15 +28,13 @@ public class BlackjackGame {
         addPlayers(InputView.getPlayerNames());
         betPlayers();
         init();
-        for (Player player : players) {
-            play(player);
-        }
-
-        playDealer(dealer);
-        OutputView.printGameResult(dealer,players);
+        players.forEach(this::play);
+        playDealer();
+        OutputView.printGameResult(dealer, players);
+        OutputView.printProfitReport(getProfitReport());
     }
 
-    private void addPlayers(String[] names){
+    private void addPlayers(String[] names) {
         Arrays.stream(names)
                 .forEach(name -> players.add(new Player(name)));
     }
@@ -47,17 +46,18 @@ public class BlackjackGame {
         }
     }
 
-    private void init(){
+    private void init() {
         dealer.init(deck);
         for (Player player : players) {
             player.init(deck);
         }
+        OutputView.printInitInfo(dealer, players);
     }
 
 
-    private void play(Player player){
+    private void play(Player player) {
         Action action = InputView.askAction(player.getName());
-        if(action.isHit()){
+        if (action.isHit()) {
             player.hit(deck.draw());
             OutputView.printInfo(player);
             play(player);
@@ -66,10 +66,22 @@ public class BlackjackGame {
         OutputView.printInfo(player);
     }
 
-    private void playDealer(Dealer dealer){
-        while(dealer.canHit()){
+    private void playDealer() {
+        while (dealer.canHit()) {
             dealer.hit(deck.draw());
             OutputView.printDealerHit(dealer);
         }
+    }
+
+    private List<Report> getProfitReport() {
+        int dealerProfit = 0;
+        List<Report> reports = new ArrayList<>();
+        for (Player player : players) {
+            int profit = (int) (player.getBetAmount() * dealer.getProfitRatio(player.getCards()));
+            reports.add(new Report(player.getName(), profit));
+            dealerProfit += (-1) * profit;
+        }
+        reports.add(0,new Report(dealer.getName(), dealerProfit));
+        return reports;
     }
 }

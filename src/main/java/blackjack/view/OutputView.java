@@ -2,8 +2,10 @@ package blackjack.view;
 
 import blackjack.domain.Dealer;
 import blackjack.domain.Player;
+import blackjack.dto.Report;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class OutputView {
 
@@ -23,4 +25,17 @@ public class OutputView {
         System.out.println(dealer.getInfo());
     }
 
+    public static void printProfitReport(List<Report> profitReport) {
+        System.out.println("### 최종 수익");
+        profitReport.forEach(System.out::println);
+    }
+
+    public static void printInitInfo(Dealer dealer, List<Player> players) {
+        List<String> names = players.stream()
+                .map(p -> p.getName())
+                .collect(Collectors.toList());
+        System.out.println("딜러와 " + names + "에게 각각 2장의 카드를 나누었습니다.");
+        System.out.println(dealer.getInfo());
+        players.forEach(p -> System.out.println(p.getInfo()));
+    }
 }

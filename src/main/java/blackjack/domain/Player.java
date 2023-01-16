@@ -12,4 +12,7 @@ public class Player extends  AbstractParticipant{
         betAmount = amount;
     }
 
+    public int getBetAmount() {
+        return betAmount;
+    }
 }

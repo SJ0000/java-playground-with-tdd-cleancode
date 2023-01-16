@@ -15,12 +15,13 @@ public class InputView {
 
     public static int askBettingAmount(String playerName){
         System.out.println(playerName + "의 베팅 금액은?");
-        return sc.nextInt();
+        return Integer.parseInt(sc.nextLine());
     }
 
     public static Action askAction(String playerName){
         System.out.println(playerName+"은(는) 한장의 카드를 더 받겠습니까?(예는 y, 아니오는 n)");
         String input = sc.nextLine();
+        System.out.println("input = " + input);
         if(input.equals("y"))
             return Action.HIT;
         if(input.equals("n"))

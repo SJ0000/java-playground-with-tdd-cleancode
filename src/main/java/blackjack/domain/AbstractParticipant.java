@@ -39,4 +39,9 @@ abstract class AbstractParticipant implements Participant{
     public void hit(Card card) {
         cards.add(card);
     }
+
+    @Override
+    public Cards getCards() {
+        return cards;
+    }
 }

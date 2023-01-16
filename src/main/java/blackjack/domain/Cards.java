@@ -1,6 +1,6 @@
 package blackjack.domain;
 
-import blackjack.domain.enums.Denomination;
+import blackjack.domain.enums.MatchResult;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,18 +15,18 @@ public class Cards {
         this.cards = new ArrayList<>();
     }
 
-    public void add(Card card){
+    public void add(Card card) {
         cards.add(card);
     }
 
     public int calculatePoint() {
         int point = getTotalPoint();
         int aceCount = getAceCount();
-        return calculateBestPoint(point,aceCount);
+        return calculateBestPoint(point, aceCount);
     }
 
-    public boolean isBlackJack(){
-        return calculatePoint() == BLACKJACK_POINT;
+    public boolean isBlackJack() {
+        return cards.size() == 2 && calculatePoint() == BLACKJACK_POINT;
     }
 
     private int getTotalPoint() {
@@ -55,8 +55,23 @@ public class Cards {
         return point;
     }
 
-    public int size(){
+    public int size() {
         return cards.size();
+    }
+
+    public boolean isBust() {
+        return calculatePoint() > BLACKJACK_POINT;
+    }
+
+    public MatchResult getMatchResult(Cards other) {
+        if ((isBlackJack() && other.isBlackJack())
+                || (isBust() && other.isBust())
+                || (calculatePoint() == other.calculatePoint()))
+            return MatchResult.DRAW;
+        if ((!isBust() && calculatePoint() > other.calculatePoint()) || other.isBust())
+            return MatchResult.WIN;
+
+        return MatchResult.LOSE;
     }
 
     @Override

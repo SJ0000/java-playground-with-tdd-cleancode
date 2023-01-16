@@ -10,4 +10,6 @@ public interface Participant {
     void init(Deck deck);
 
     void hit(Card card);
+
+    Cards getCards();
 }
