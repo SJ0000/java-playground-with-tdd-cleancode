@@ -1,15 +1,13 @@
 package blackjack.domain;
 
+import blackjack.domain.state.State;
+
 public interface Participant {
     String getName();
 
-    String getInfo();
-
-    int getPoint();
-
-    void init(Deck deck);
+    State getState();
 
     void hit(Card card);
 
-    Cards getCards();
+    void stay();
 }

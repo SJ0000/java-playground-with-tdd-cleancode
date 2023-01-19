@@ -1,47 +1,28 @@
 package blackjack.domain;
 
-import java.util.ArrayList;
+import blackjack.domain.state.State;
 
 abstract class AbstractParticipant implements Participant{
 
-    protected Cards cards;
-    protected String name;
-
-    public AbstractParticipant(String name) {
-        this.cards = new Cards();
-        this.name = name;
-    }
-
-    @Override
-    public void init(Deck deck) {
-        for(int i=0;i<2;i++){
-            Card card = deck.draw();
-            cards.add(card);
-        }
-    }
+    protected State state;
 
     @Override
     public String getName() {
-        return name;
+        return null;
     }
 
     @Override
-    public String getInfo() {
-        return name + " 카드:" + cards;
-    }
-
-    @Override
-    public int getPoint() {
-        return cards.calculatePoint();
+    public State getState() {
+        return null;
     }
 
     @Override
     public void hit(Card card) {
-        cards.add(card);
+        state = state.draw(card);
     }
 
     @Override
-    public Cards getCards() {
-        return cards;
+    public void stay() {
+        state = state.stay();
     }
 }

@@ -1,18 +1,16 @@
 package blackjack.domain;
 
-public class Player extends  AbstractParticipant{
+public class Player extends AbstractParticipant {
 
-    private int betAmount;
+    private static final int CAN_HIT_POINT = 20;
+
+    private final String name;
 
     public Player(String name) {
-        super(name);
+        this.name = name;
     }
 
-    public void bet(int amount){
-        betAmount = amount;
-    }
 
-    public int getBetAmount() {
-        return betAmount;
-    }
+
+
 }
