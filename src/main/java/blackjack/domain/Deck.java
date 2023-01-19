@@ -6,10 +6,18 @@ import blackjack.domain.enums.Suit;
 import java.util.*;
 
 public class Deck {
-    private Queue<Card> cards;
+    private final Queue<Card> cards;
 
     public Deck() {
         this.cards = createCards();
+    }
+
+    public Cards drawTwoCards(){
+        Cards cards =new Cards();
+        for(int i=0;i<2;i++){
+            cards.add(draw());
+        }
+        return cards;
     }
 
     public Card draw(){

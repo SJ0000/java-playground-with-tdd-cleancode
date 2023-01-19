@@ -10,8 +10,14 @@ public interface State {
     State stay();
     Cards cards();
 
+    int point();
+
     boolean isFinished();
 
-    double profit();
+    static State of(Cards cards){
+        if(cards.isBlackJack())
+            return new Blackjack(cards);
 
+        return new Hit(cards);
+    }
 }

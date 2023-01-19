@@ -15,10 +15,8 @@ public class OutputView {
         System.out.println(dto.getInfo());
     }
 
-    public static void printGameResult(List<ParticipantDto> dtos){
-        dtos.forEach(dto -> {
-            System.out.println(dto.getInfo() + " - 결과: " + dto.getPoint());
-        });
+    public static void printGameResult(ParticipantDto dto){
+        System.out.println(dto.getInfo() + " - 결과: " + dto.getPoint());
     }
 
     public static void printDealerHit(ParticipantDto dealer){

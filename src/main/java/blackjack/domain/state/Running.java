@@ -9,11 +9,6 @@ public abstract class Running extends Started{
     }
 
     @Override
-    public double profit() {
-        return 1;
-    }
-
-    @Override
     public boolean isFinished() {
         return false;
     }

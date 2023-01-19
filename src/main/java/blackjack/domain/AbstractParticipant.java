@@ -6,14 +6,14 @@ abstract class AbstractParticipant implements Participant{
 
     protected State state;
 
-    @Override
-    public String getName() {
-        return null;
+    public AbstractParticipant(Cards cards) {
+        this.state = State.of(cards);
     }
+
 
     @Override
     public State getState() {
-        return null;
+        return state;
     }
 
     @Override

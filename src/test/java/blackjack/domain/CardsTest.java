@@ -2,9 +2,7 @@ package blackjack.domain;
 
 
 import blackjack.domain.enums.Denomination;
-import blackjack.domain.enums.MatchResult;
 import blackjack.domain.enums.Suit;
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import static org.assertj.core.api.Assertions.*;

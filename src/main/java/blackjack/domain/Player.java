@@ -2,15 +2,24 @@ package blackjack.domain;
 
 public class Player extends AbstractParticipant {
 
-    private static final int CAN_HIT_POINT = 20;
-
     private final String name;
+    private int betAmount;
 
-    public Player(String name) {
+    public Player(Cards cards, String name) {
+        super(cards);
         this.name = name;
     }
 
+    public void bet(int amount){
+        this.betAmount = amount;
+    }
 
+    public int getBetAmount() {
+        return betAmount;
+    }
 
-
+    @Override
+    public String getName() {
+        return name;
+    }
 }

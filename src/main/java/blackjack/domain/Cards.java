@@ -1,7 +1,5 @@
 package blackjack.domain;
 
-import blackjack.domain.enums.MatchResult;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -63,16 +61,6 @@ public class Cards {
         return calculatePoint() > BLACKJACK_POINT;
     }
 
-    public MatchResult getMatchResult(Cards other) {
-        if ((isBlackJack() && other.isBlackJack())
-                || (isBust() && other.isBust())
-                || (calculatePoint() == other.calculatePoint()))
-            return MatchResult.DRAW;
-        if ((!isBust() && calculatePoint() > other.calculatePoint()) || other.isBust())
-            return MatchResult.WIN;
-
-        return MatchResult.LOSE;
-    }
 
     @Override
     public String toString() {
